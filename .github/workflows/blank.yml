@@ -11,6 +11,18 @@ env:
   GLOBAL_VAR: 'Global Hello'
 
 jobs:
+  script_run:
+    name: Run script
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository to runner
+        uses: actions/checkout@v4
+      - name: Make executable
+        run: chmod +x ./scripts/hello.sh
+      - name: run the script
+        run: ./scripts/hello.sh
+
   upload:
     name: Upload file
     runs-on: ubuntu-latest
