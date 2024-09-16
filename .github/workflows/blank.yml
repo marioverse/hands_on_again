@@ -27,7 +27,7 @@ jobs:
     needs: upload
     
     steps:
-      - run: echo "${{ github.action_path }}"
+      - run: echo ${{ github.action_path }}
       - uses: actions/download-artifact@v4
         with:
           name: file
