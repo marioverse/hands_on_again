@@ -1,0 +1,12 @@
+name: One or more event triggers
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+
+jobs:
+  testevent:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - run: echo Hello from test
