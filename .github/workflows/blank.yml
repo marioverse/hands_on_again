@@ -6,13 +6,20 @@ on:
   #workflow_dispatch:
   #pull_request:
   #  branches: [ "main" ]
+  
+env:
+  GLOBAL_VAR: 'Global Hello'
 
 jobs:
   upload:
     name: Upload file
     runs-on: ubuntu-latest
+    env:
+      JOB_VAR: 'Job Hello'
 
     steps:
+      - name: use job-specific environmet variable
+        run: echo $JOB_VAR
       - run: echo ${{ github.ref }}
       - run: echo "Hello, world!" > file.txt
       - name: Upload file
@@ -27,7 +34,13 @@ jobs:
     needs: upload
     
     steps:
-      - run: echo ${{ github.action_path }}
+      - run: echo $GLOBAL_VAR
+      - name: Use secret
+        env:
+          SENSITIVE_VAR: ${{ secrets.SECRET_NAME }}
+        run: echo $SENSITIVE_VAR
+      - name: Write secrete
+        run: echo $SENSITIVE_VAR >> file.txt
       - uses: actions/download-artifact@v4
         with:
           name: file
