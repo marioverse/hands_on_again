@@ -14,6 +14,23 @@ env:
 
 
 jobs:
+  playground:
+    name: Input Output Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create color output
+        id: create-color-output
+        run: echo "CHOOSEN_COLOR=black" >> $GITHUB_OUTPUT
+      - name: Get color output
+        env: 
+          CHOOSEN_COLOR: ${{ steps.create-color-output.outputs.CHOOSEN_COLOR }}
+        run: echo "The selected color is $CHOOSEN_COLOR"
+      - name: Test Summery
+        run: echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+
+
+         
   script_run:
     name: Run script
     runs-on: ubuntu-latest
