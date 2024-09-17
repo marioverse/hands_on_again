@@ -9,6 +9,10 @@ on:
   
 env:
   GLOBAL_VAR: 'Global Hello'
+  env_var: ${{ vars.ENV_CONTEXT_VAR }}
+  env_var_name: ${{ vars.ENV_VAR_NAME }}
+
+
 
 jobs:
   script_run:
@@ -26,7 +30,8 @@ jobs:
       - name: run the script
         run: ./.github/scripts/hello.sh
       - name: output testenv variable
-        run: echo $ENV_VAR_NAME
+        run: echo $env_var_name
+      - run: echo $env_var
 
   upload:
     name: Upload file
