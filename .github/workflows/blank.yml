@@ -14,8 +14,9 @@ jobs:
   script_run:
     name: Run script
     runs-on: ubuntu-latest
-    environment: testenv
-
+    environment: 
+      name: testenv
+      url: https://github.com
 
     steps:
       - name: Checkout repository to runner
@@ -25,7 +26,7 @@ jobs:
       - name: run the script
         run: ./.github/scripts/hello.sh
       - name: output testenv variable
-        run: echo $ENV_VARS_NAME
+        run: echo $ENV_VAR_NAME
 
   upload:
     name: Upload file
