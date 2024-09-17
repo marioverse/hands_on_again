@@ -9,7 +9,6 @@ on:
   
 env:
   GLOBAL_VAR: 'Global Hello'
-  env_var: ${{ vars.ENV_CONTEXT_VAR }}
   env_var_name: ${{ vars.ENV_VAR_NAME }}
 
 
@@ -20,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: 
       name: testenv
-      url: https://github.com
+      url: https://github.com/marioverse/hands_on_again
 
     steps:
       - name: Checkout repository to runner
@@ -31,7 +30,6 @@ jobs:
         run: ./.github/scripts/hello.sh
       - name: output testenv variable
         run: echo $env_var_name
-      - run: echo $env_var
 
   upload:
     name: Upload file
