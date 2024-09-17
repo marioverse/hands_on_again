@@ -28,6 +28,9 @@ jobs:
         run: echo "The selected color is $CHOOSEN_COLOR"
       - name: Test Summery
         run: echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+      - name: Test debug message
+        run: echo "::debug::Set the Octocat variable"
+
 
 
          
